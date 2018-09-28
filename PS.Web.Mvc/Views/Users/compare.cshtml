@@ -1,0 +1,450 @@
+﻿@model List<PS.Web.Mvc.Models.CompareViewModel>
+@section compare {
+    class="active"
+}
+@{
+    Layout = "_Layout.cshtml";
+}
+
+@section styles {
+    <style>
+
+        .features_table h1 {
+            font-size: 25px !important;
+        }
+
+        .features-table-free ul li {
+            list-style-type: none;
+        }
+
+        .features-table li {
+            list-style: none;
+        }
+        .features-table ul {
+            width: 116%;
+        }
+        .features-table-free ul{
+           width:122%;
+        } 
+        .features-table h1 {
+            font-size: 21px !important;
+        }
+
+        .features-table li {
+            background: #da9748 none repeat scroll 0 0;
+            border-bottom: 2px solid #e5a253;
+            color: #f1f1f1;
+            font-size: 16px;
+            list-style-type: none;
+            padding: 15px 24px;
+        }
+
+            .features-table li:hover {
+                background: #e5a253;
+                cursor: pointer;
+                -webkit-transition: all .35s;
+                -moz-transition: all .35s;
+                transition: all .35s;
+            }
+
+        .features-table-free li, .features-table-paid li {
+            background: #efefef none repeat scroll 0 0;
+            border-bottom: 2px solid #d4d4d4;
+            text-align: center;
+            padding: 16.4px 21px;
+            cursor: pointer;
+        }
+
+        .features-table-free h1, .features-table-paid h1 {
+            text-align: center;
+        }
+
+        .features-table-free li:hover, .features-table-paid li:hover {
+            background: #dedede none repeat scroll 0 0;
+            -webkit-transition: all .35s;
+            -moz-transition: all .35s;
+            transition: all .35s;
+        }
+
+        .features_table h1 {
+            font-size: 23px !important;
+        }
+
+        .features-table h1, .features-table-free h1, .features-table-paid h1 {
+            background: #6b6b6b none repeat scroll 0 0;
+            color: #fff;
+            font-weight: 600;
+            margin: 0;
+            padding: 19px 21px;
+            text-transform: uppercase;
+        }
+
+        .features-table h1 {
+            border-top-left-radius: 20px;
+            text-align: center;
+        }
+
+        .features-table-paid h1 {
+            border-top-right-radius: 20px;
+        }
+
+        .features-table-free li {
+            border-right: 2px solid #d4d4d4;
+        }
+
+        .features-table .fa.fa-check {
+            color: #2cc14f;
+        }
+
+        .features-table .fa.fa-times {
+            color: #BA5340;
+        }
+
+        .features-table .fa {
+            font-size: 30px;
+        }
+
+       
+        .features-table {
+            padding: 0;
+        }
+
+
+            .features-table li::before {
+                counter-increment: section; /* Increment the section counter*/
+                content: "" counter(section) ": "; /* Display the counter */
+            }
+
+        .features-table {
+            box-sizing: border-box;
+        }
+
+        table, th, td {
+            border: 2px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+            text-align: left;
+        }
+
+        .price {
+            list-style-type: none;
+            border: 1px solid #eee;
+            margin: 0;
+            padding: 0;
+            -webkit-transition: 0.3s;
+            transition: 0.3s;
+        }
+
+            .price .grey {
+                background-color: #eee;
+                font-size: 20px;
+            }
+
+        .checked {
+            color: orange;
+        }
+
+        table li.grey {
+            list-style: none;
+            text-decoration: none;
+            margin-bottom: 20px;
+            margin-left: 7%;
+        }
+
+        table li a {
+            text-decoration: none;
+            text-decoration: none;
+            padding: 11px 30px 14px 25px;
+            background: #87ceeb;
+            border-radius: 5px;
+            color: #000;
+            font-size: 15px;
+            font-weight: 1000;
+        }
+
+        .empty_space {
+            margin-bottom: 10%;
+        }
+
+        #searchItems {
+            width: 100%;
+            background: white;
+        }
+
+            #searchItems ul {
+                padding-left: 0px;
+                margin-left: 0px;
+            }
+
+                #searchItems ul li:hover {
+                    background: #374850;
+                }
+
+                    #searchItems ul li:hover a {
+                        color: white;
+                    }
+
+                #searchItems ul li {
+                    border-radius: 5px;
+                    list-style: none;
+                    display: block;
+                    border: 1px solid black;
+                }
+
+                    #searchItems ul li a {
+                        width: 100%;
+                        padding: 8px;
+                        color: black;
+                        display: block;
+                        height: 100%;
+                    }
+
+        .skin-blue .sidebar-form {
+            border: none !important;
+        }
+    </style>
+}
+
+<section class="content-header">
+    <h1>
+        User Panel Home<br>
+        <!-- <small>Optional description</small>  -->
+    </h1>
+
+</section>
+<!-- Main content -->
+<section class="content container-fluid">
+    <div class="col-md-6 col-md-offset-3" style="margin-bottom:20px;">
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" autocomplete="off" name="Search" id="search" class="form-control" placeholder="Search..." style="border-radius:4px;" />
+                <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" onclick="send()" class="btn btn-flat">
+                        <i class="fa fa-search" style="border-radius:4px;"></i>
+                    </button>
+                </span>
+            </div>
+            <div id="searchItems">
+                <ul></ul>
+            </div>
+        </form>
+    </div>
+
+    <div class="features_table col-md-12">
+        <div class="col-sm-3 col-3 col-xs-4 no-padding">
+            <div class="features-table">
+                <ul>
+                    @if (Model != null)
+                    {
+                        <h1>Parking Spot</h1>
+
+                        <li>
+                            Price:
+                        </li>
+                        <li>
+                            Rating:
+                        </li>
+                        <li>
+                            Facility:
+                        </li>
+                        <li style="height:69px;">
+                            Options:
+                        </li>
+
+                    }
+                    @*<h1>Parking Spot</h1>
+                        <li>Price:</li>
+                        <li>Options</li>*@
+
+                </ul>
+            </div>
+        </div>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <div class="col-sm-2 col-2 col-xs-12 no-padding">
+                    <div class="features-table-free" style="position:relative;">
+                        <ul>
+                            @*<a href="/Users/removeItem/@item.ID" style="background-color:white; color:black; position:absolute;top:0px; right: 0px; border:1px solid gray; padding:4px;">x</a>*@
+                            <h1>@item.Name</h1>
+                            <li>@item.Price</li>
+                            <li>@item.Rating</li>
+                            <li>@item.Facilities</li>
+                            <li>
+                                <a href="/Users/MakeRequest/@item.PlaceId" class="btn btn-primary">Book</a>
+                                <a href="/Users/removeItem/@item.PlaceId" class="btn btn-danger">Remove</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            }
+        }
+
+    </div>
+    <div class="col-md-12">
+        @if (Model == null)
+        {
+            <h2 class="text-center">Search and add places to compare them</h2>
+        }
+        @*<table style="width:100%">
+            <tr>
+
+                @if (Model != null)
+                {
+                    <th>Parking Spot</th>
+                    foreach (var item in Model)
+                    {
+                        <td style="position:relative;">
+                            <a href="/Users/removeItem/@item.ID" style="background-color:white; color:black; position:absolute;top:0px; right: 0px; border:1px solid gray; padding:4px;">x</a>
+                            @item.SpotName
+                        </td>
+
+                    }
+                }
+            </tr>
+
+            <tr>
+
+                @if (Model != null)
+                {
+                    //    var matches = Session["mathes"] as IEnumerable<ParkingPlace>;
+                    <th>Price:</th>
+                    foreach (var item in Model)
+                    {
+                        <td>@item.PricePerHour</td>
+
+                    }
+                }
+            </tr>*@
+            @*<tr>
+                    <th>Rating :</th>
+                    <td>
+
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+
+                    </td>
+
+                    <td>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star "></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </td>
+
+                    <td>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                    </td>
+
+                    <td>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                    </td>
+                    <td>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </td>
+                </tr>*@
+            @* <tr>
+                        <th>Facilities:</th>
+
+                    <td>
+                        <ol>
+                            <p>1.Automated parking garage</p>
+                                <p>2.Underground parking garage</p>
+                        </ol>
+
+                    </td>
+
+
+                <td>
+                    <ol>
+                        <p>1.There are several types of parking garages</p>
+                        <p>2.Car wash</p>
+                    </ol>
+
+                </td>
+
+
+                <td>
+                    <ol>
+                        <p>1.Automated parking garage</p>
+                        <p>1.Canteen</p>
+                    </ol>
+                </td>
+
+                <td>
+                    <ol>
+                        <p>1.There are several types of parking garages</p>
+                        <p>2.Underground parking garage</p>
+                    </ol>
+
+                </td>
+
+                <td>
+                    <ol>
+                        <p>1.Automated parking garage</p>
+                        <p>2.Underground parking garage</p>
+                    </ol>
+
+                </td>
+
+                    </tr>*@
+
+            @*<tr>
+                @if (Model != null)
+                {
+
+                    <th>Options</th>
+                    foreach (var item in Model)
+                    {
+                        <td>
+                            @*<div class="empty_space"></div>*@
+                            @*<a href="/Users/MakeRequest" class="btn btn-primary">Book</a>
+                            <a href="/Users/removeItem/@item.ID" class="btn btn-danger">Remove</a>
+                        </td>
+                    }
+                }
+            </tr>
+        </table>*@
+    </div>
+</section>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#search").keyup(function () {
+                searchString = $("#search").val();
+                $.get("/Users/getSearchItems/" + searchString, function (data, status) {
+                    var json = JSON.parse(data)
+                    console.log(json);
+                    $('#searchItems ul').html("");
+                    for (var k in json) {
+                        $('#searchItems ul').append("<li><a href='/Users/search/" + json[k].ID + "'>" + json[k].SpotName + "</a></li>");
+                    }
+                    if ($('#search').val() == '') {
+                        $('#searchItems ul').html("");
+                    }
+                });
+            });
+        });
+    </script>
+}
+<!-- /.content -->
+<!-- ./wrapper -->

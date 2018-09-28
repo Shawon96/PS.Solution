@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8E9FBCC0-00C6-4875-9EA8-156CD2E111EE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PS.Infrastructure</RootNamespace>
+    <AssemblyName>PS.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migrations\201805061537390_InitialState.cs" />
+    <Compile Include="Migrations\201805061537390_InitialState.Designer.cs">
+      <DependentUpon>201805061537390_InitialState.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805071043529_Request_Droped.cs" />
+    <Compile Include="Migrations\201805071043529_Request_Droped.Designer.cs">
+      <DependentUpon>201805071043529_Request_Droped.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805210848035_Booking_Entity_Changed.cs" />
+    <Compile Include="Migrations\201805210848035_Booking_Entity_Changed.Designer.cs">
+      <DependentUpon>201805210848035_Booking_Entity_Changed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805210918117_Subscription_Entity_Changed.cs" />
+    <Compile Include="Migrations\201805210918117_Subscription_Entity_Changed.Designer.cs">
+      <DependentUpon>201805210918117_Subscription_Entity_Changed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805230807070_Place_review_Changed.cs" />
+    <Compile Include="Migrations\201805230807070_Place_review_Changed.Designer.cs">
+      <DependentUpon>201805230807070_Place_review_Changed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805230822392_zzz_Changed.cs" />
+    <Compile Include="Migrations\201805230822392_zzz_Changed.Designer.cs">
+      <DependentUpon>201805230822392_zzz_Changed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808301248086_Bla_Bla_Changed.cs" />
+    <Compile Include="Migrations\201808301248086_Bla_Bla_Changed.Designer.cs">
+      <DependentUpon>201808301248086_Bla_Bla_Changed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PsDbContex.cs" />
+    <Compile Include="Test.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PS.Core.Entities\PS.Core.Entities.csproj">
+      <Project>{5ef21f36-b12f-4e95-83ae-a3f7485ef56c}</Project>
+      <Name>PS.Core.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805061537390_InitialState.resx">
+      <DependentUpon>201805061537390_InitialState.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071043529_Request_Droped.resx">
+      <DependentUpon>201805071043529_Request_Droped.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805210848035_Booking_Entity_Changed.resx">
+      <DependentUpon>201805210848035_Booking_Entity_Changed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805210918117_Subscription_Entity_Changed.resx">
+      <DependentUpon>201805210918117_Subscription_Entity_Changed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805230807070_Place_review_Changed.resx">
+      <DependentUpon>201805230807070_Place_review_Changed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805230822392_zzz_Changed.resx">
+      <DependentUpon>201805230822392_zzz_Changed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808301248086_Bla_Bla_Changed.resx">
+      <DependentUpon>201808301248086_Bla_Bla_Changed.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

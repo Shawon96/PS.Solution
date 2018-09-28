@@ -1,0 +1,160 @@
+﻿@model IEnumerable<PS.Web.Mvc.Models.UserBookingModel>
+
+@{
+    Layout = "_Layout.cshtml";
+}
+
+@section bookings {
+    class="active"
+}
+
+@section styles {
+    <style type="text/css">
+        .checked {
+            color: orange;
+        }
+
+        .fa {
+            display: inline-block;
+            font: normal normal normal 18px/1 FontAwesome;
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+}
+</head>
+
+<section class="content-header">
+    <h1>
+        User Panel Bookings<br>
+        <!-- <small>Optional description</small>  -->
+    </h1>
+
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+    <div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#current">Current</a></li>
+            <li><a data-toggle="tab" href="#subscription">Subscription</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="current" class="tab-pane fade in active">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <i class="fa fa-bullhorn"></i>
+
+                        <h3 class="box-title">Current Bookings</h3>
+                    </div>
+                    <!-- /.box-hteeader -->
+                    @foreach (var item in Model)
+                    {
+                        if (@item.idBook == 0) { continue;  }
+                        <div class="box-body">
+                        <div class="callout callout-default">
+                            <h4>@item.Name</h4>
+                           
+                            <h5>@item.Price tk/hour</h5>
+                            
+                            @if (@item.IsPending == 1) {
+                                <h5>Status: <span class="text-yellow">Pending</span></h5>
+                            }
+                            else
+                            {
+                                <h5>Status: <span class="text-green">Active</span></h5>
+                            }
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#giveReviewModal">Done</button>
+                            <button class="btn btn-danger">Cancel</button>
+                        </div>
+
+                    </div>
+                    }
+                    
+                </div>
+            </div>
+            <div id="subscription" class="tab-pane fade">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <i class="fa fa-bullhorn"></i>
+
+                        <h3 class="box-title">Subscribed Bookings</h3>
+                    </div>
+                    <!-- /.box-header -->
+                     @foreach (var item in Model)
+                     {
+                         if (@item.idBook == 1) { continue; }
+                    <div class="box-body">
+                        <div class="callout callout-default">
+                            <h4>@item.Name</h4>
+                            <h5>@item.Price</h5>
+                            <h5>@item.Date</h5>
+                            <h5>Status: <span class="text-green">Subscribed</span></h5>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#giveReviewModal">Done</button>
+                            <button class="btn btn-danger">Cancel</button>
+                        </div>
+                    </div>
+                     }
+                </div>
+            </div>
+        </div>
+        <!---------------------- -->
+        <!-- Modal -->
+        <div class="modal fade" id="giveReviewModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Share Your Experience</h4>
+                    </div>
+                    <div class="modal-body">
+                        <style type="text/css">
+                            .rating > span:hover:before {
+                                content: "\2605";
+                                position: absolute;
+                            }
+
+                            .rating {
+                                unicode-bidi: bidi-override;
+                                direction: rtl;
+                            }
+
+                                .rating span {
+                                    width: 2.1em;
+                                }
+
+                                .rating > span:hover:before,
+                                .rating > span:hover ~ span:before {
+                                    content: "\2605";
+                                    position: absolute;
+                                    color: gold;
+                                }
+                        </style>
+                        <form method="post" action="/Users/MakePlaceReview">
+                            <label>Rating: </label>
+                            <div class="rating" style="text-align:left;">
+                                <input type="text" name="Rating" placeholder="Rating" />
+                                <input type="text" name="ToPlaceId" value="7" hidden/>
+                                <span style="width:50px">☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                            </div>
+                            <label>Comment: </label>
+                            <textarea type="text" rows="7" cols="90" name="Comment" placeholder="Comment"> </textarea>
+                            <input type="submit" class="btn btn-primary" value="Share">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-------------modal finish------------>
+</section>
+<!-- /.content -->
+<!-- ./wrapper -->

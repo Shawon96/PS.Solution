@@ -1,0 +1,243 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@section compare {
+    class="active"
+}
+@{
+    Layout = "_Layout.cshtml";
+}
+
+@section styles {
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        table, th, td {
+            border: 2px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+            text-align: left;
+        }
+
+        .price {
+            list-style-type: none;
+            border: 1px solid #eee;
+            margin: 0;
+            padding: 0;
+            -webkit-transition: 0.3s;
+            transition: 0.3s;
+        }
+
+            .price .grey {
+                background-color: #eee;
+                font-size: 20px;
+            }
+
+        .checked {
+            color: orange;
+        }
+
+        table li.grey {
+            list-style: none;
+            text-decoration: none;
+            margin-bottom: 20px;
+            margin-left: 7%;
+        }
+
+        table li a {
+            text-decoration: none;
+            text-decoration: none;
+            padding: 11px 30px 14px 25px;
+            background: #87ceeb;
+            border-radius: 5px;
+            color: #000;
+            font-size: 15px;
+            font-weight: 1000;
+        }
+
+        .empty_space {
+            margin-bottom: 10%;
+        }
+    </style>
+}
+
+<section class="content-header">
+    <h1>
+        User Panel Home<br>
+        <!-- <small>Optional description</small>  -->
+    </h1>
+
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+    <div class="col-md-6 col-md-offset-3" style="margin-bottom:20px;">
+        <form action="/Users/search" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="Search" id="search" class="form-control" placeholder="Search..." style="border-radius:4px;">
+                <table id="resultsTable"></table>
+                <a id="liveSearch"></a>
+                <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                        <i class="fa fa-search" style="border-radius:4px;"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+    </div>
+    <div>
+        <table style="width:100%">
+            <tr>
+                <th>Parking Spot</th>
+                <td>Jamuna</td>
+                <td>Bashundhara</td>
+                <td>Kuratoli</td>
+                <td>Banani</td>
+                <td>Gulshan</td>
+            </tr>
+
+            <tr>
+                <th>Price:</th>
+                <td>10tk hour</td>
+                <td>20tk hour</td>
+                <td>30tk hour</td>
+                <td>40tk hour</td>
+                <td>50tk hour</td>
+            </tr>
+            <tr>
+                <th>Rating :</th>
+                <td>
+
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+
+                </td>
+
+                <td>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star "></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </td>
+
+                <td>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                </td>
+
+                <td>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                </td>
+                <td>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                </td>
+            </tr>
+            <tr>
+                <th>Facilities:</th>
+                <td>
+                    <ol>
+                        <p>1.Automated parking garage</p>
+                        <p>2.Underground parking garage</p>
+                    </ol>
+
+                </td>
+
+
+                <td>
+                    <ol>
+                        <p>1.There are several types of parking garages</p>
+                        <p>2.Car wash</p>
+                    </ol>
+
+                </td>
+
+
+                <td>
+                    <ol>
+                        <p>1.Automated parking garage</p>
+                        <p>1.Canteen</p>
+                    </ol>
+                </td>
+
+                <td>
+                    <ol>
+                        <p>1.There are several types of parking garages</p>
+                        <p>2.Underground parking garage</p>
+                    </ol>
+
+                </td>
+
+                <td>
+                    <ol>
+                        <p>1.Automated parking garage</p>
+                        <p>2.Underground parking garage</p>
+                    </ol>
+
+                </td>
+
+            </tr>
+
+            <tr>
+                <th>Book</th>
+
+                <td>
+                    <div class="empty_space"></div>
+                    <li class="grey"><a href="#" class="btn btn-primary">Book</a></li>
+                </td>
+                <td>
+                    <div class="empty_space"></div>
+                    <li class="grey"><a href="#" class="btn btn-primary">Book</a></li>
+                </td>
+                <td>
+                    <div class="empty_space"></div>
+                    <li class="grey"><a href="#" class="btn btn-primary">Book</a></li>
+                </td>
+                <td>
+                    <div class="empty_space"></div>
+                    <li class="grey"><a href="#" class="btn btn-primary">Book</a></li>
+                </td>
+                <td>
+                    <div class="empty_space"></div>
+                    <li class="grey"><a href="#" class="btn btn-primary">Book</a></li>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+@section scripts
+{
+    <script>
+        $(function () {
+
+            $("#search").keyup(function (e) {
+                var n = $("#search").val().toString();
+                $.get("/Users/search/"+n , function (r) {
+                    //update ui with results
+                    var obj = JSON.parse(r);
+                    for (var i = 0; i < obj.length;i++)
+                        $("#liveSearch").html(obj[i].SpotName);
+                        $("#liveSearch").css("border","1px solid #A5ACB2");
+                });
+
+            });
+
+        });
+    </script>
+}
+<!-- /.content -->
+<!-- ./wrapper -->

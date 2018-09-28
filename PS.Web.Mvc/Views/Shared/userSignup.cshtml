@@ -1,0 +1,151 @@
+@inherits System.Web.Mvc.WebViewPage
+<link rel="stylesheet" href="~/Assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
+<!-- jQuery 3 -->
+<script src="~/Assets/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="~/Assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<!------ Include the above in your HEAD tag ---------->
+<style type="text/css">
+    .well {
+        padding: 35px;
+        padding-left: 30px;
+        box-shadow: 0 0 10px #666666;
+        margin: 4% auto 0;
+        width: 450px;
+    }
+
+    body {
+        background-color: #222d32;
+    }
+
+    .input-group-addon {
+        background-color: #ffde6c;
+        color: #d17d00;
+    }
+</style>
+
+
+<form action="/Users/Signup" name="myForm" method="post" onsubmit="return(validate());">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="well center-block">
+                <div class="well-header">
+                    <h3 class="text-center text-success"> Register Here! </h3>
+
+                    @if (ViewBag.msg != null)
+                     {
+                           @ViewBag.msg;
+                     }
+                    @if (ViewBag.msg2 != null)
+                     {
+                           @ViewBag.msg2;
+                     }
+
+                    <hr>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                </div>
+                                <input type="text" placeholder="Username" name="Username" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="glyphicon glyphicon-lock"></i>
+                                </div>
+                                <input type="password" minlength="8" maxlength="20" placeholder="Password" name="Password" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="glyphicon glyphicon-lock"></i>
+                                </div>
+                                <input type="password" minlength="8" maxlength="20" placeholder="Confirm Password" name="ConfirmPassword" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 col-sm-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="glyphicon glyphicon-phone"></i>
+                                </div>
+                                <input type="text" minlength="10" maxlength="12" class="form-control" name="Mobile" placeholder="Mobile No." required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 col-sm-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="glyphicon glyphicon-envelope"></i>
+                                </div>
+                                <input type="email" class="form-control" name="Email" placeholder="E-Mail" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 col-sm-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="glyphicon glyphicon-list-alt"></i>
+                                </div>
+                                <input type="text" class="form-control" name="CarModel" placeholder="Car Model" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 col-sm-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="glyphicon glyphicon-list-alt"></i>
+                                </div>
+                                <input type="text" class="form-control" name="LicensNumber" placeholder="Car License" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row widget">
+                    <div class="col-md-12 col-xs-12 col-sm-12">
+                        <button class="btn btn-warning btn-block"> Submit </button>
+                    </div>
+                </div>
+                Already a user? <a href="index">Login</a>
+            </div>
+        </div>
+    </div>
+
+
+</form>

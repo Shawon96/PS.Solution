@@ -1,0 +1,66 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@{
+    Layout = "_Layout.cshtml";
+}
+
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        User Panel Profile<br>
+        <!-- <small>Optional description</small>  -->
+    </h1>
+
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+
+    <div class="box box-widget widget-user">
+        <!-- Add the bg color to the header using any of the bg-* classes -->
+        <div class="widget-user-header bg-black" style="background: url('~/Assests/dist/img/photo1.png') center center;">
+            <h3 class="widget-user-username">Jonathan Burke</h3>
+            <h5 class="widget-user-desc">User</h5>
+        </div>
+        <div class="widget-user-image">
+            <img class="img-circle" src="~/Assets/dist/img/user1-128x128.jpg" alt="User Avatar">
+        </div>
+        <div class="box-footer">
+            <div class="row">
+                <div class="col-sm-4 border-right">
+                    <div class="description-block">
+
+                        <span class="description-text">Email</span>
+                        <h5 class="description-header">john@gmail.com</h5>
+                    </div>
+                    <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4 border-right">
+                    <div class="description-block">
+
+                        <span class="description-text">Gender</span>
+                        <h5 class="description-header">Male</h5>
+                    </div>
+                    <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-4">
+                    <div class="description-block">
+
+                        <span class="description-text">Last Login</span>
+                        <h5 class="description-header">06 march 2018</h5>
+                    </div>
+                    <!-- /.description-block -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+
+    </div>
+    <a href="/Owner/edit"><button class="col-md-2 col-md-offset-3 btn btn-primary">Edit Information</button></a>
+    <a href="/Owner/changepass"><button class="col-md-2 col-md-offset-2 btn btn-primary">Change Password</button></a>
+
+</section>

@@ -1,0 +1,274 @@
+﻿@model IEnumerable<PS.Core.Entities.Owner.ParkingPlace>
+@{
+    Layout = "_Layout.cshtml";
+}
+
+
+@section home {
+    class="active"
+}
+
+
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+
+        User Panel Profile<br>
+        <!-- <small>Optional description</small>  -->
+    </h1>
+
+</section>
+
+
+<!-- Main content -->
+<section class="content container-fluid">
+
+    @foreach (var item in Model)
+    {
+
+        <div class="col-md-5" style="margin-bottom:30px;">
+            <div class="box box-widget widget-user-2">
+                <!-- Add the bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header bg-yellow">
+
+                    <h3 class="widget-user-image">@item.SpotName</h3>
+                    <h5 class="widget-user-image">@item.SpotLocation</h5>
+                </div>
+                <div class="box-footer no-padding">
+                    <ul class="nav nav-stacked">
+                        <li><a href="#">Rating <span class="pull-right badge bg-blue">4.5/5.0</span></a></li>
+                        <li><a href="#">Price <span class="pull-right badge bg-aqua">@item.PricePerHour</span></a></li>
+                        <li><a href="#">Promo Status <span class="pull-right badge bg-green">N/A</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="action_button">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <button class="btn btn-danger " data-toggle="modal" data-target="#deleteModal_@item.ID">delete</button>
+
+                        <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#editModal_@item.ID" style="margin-left: 5px;">Edit</button>
+                        <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#offerModel">Offer</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- /.content -->
+        <!-- Modal -->
+        <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="Parking_Place_Name">Parking Place Name:</label>
+                                        <input type="text" class="form-control" id="Parking_Place_Name" aria-describedby="parkingHelp" placeholder="Enter Your Parking Place Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Location">Location Name:</label>
+                                        <input type="text" class="form-control" id="Location" placeholder="Enter Your Parking Location">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Capacity">Capacity:</label>
+                                        <input type="text" class="form-control" id="Capacity" placeholder="Enter Your Parking Capacity">
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Modal Section -->
+        <!-- Modal -->
+        <div class="modal fade" id="deleteModal_@item.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Parking Place Name: @item.SpotName
+                        <br>
+                        <br>
+                        Location Name: @item.SpotLocation
+                        <br>
+                        <br>
+                        Capacity: @item.Capacity
+                        <br>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <a href="Owner/delete/@item.ID" type="button" class="btn btn-primary">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Modal Section -->
+        <!-- Modal -->
+
+
+        <div class="modal fade" id="editModal_@item.ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form method="post" action="/Owner/EditPlace">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit Your Parking Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container col-md-12">
+                                <div class="row">
+
+                                    <div class="form-group">
+                                        <label for="Parking_Place_Name">Parking Place Name:</label>
+                                        <input type="text" class="form-control" id="Parking_Place_Name" aria-describedby="parkingHelp" name="SpotName" value="@item.SpotName">
+                                    </div>
+                                    <input name="ID" value="@item.ID" hidden />
+                                    <div class="form-group">
+                                        <label for="Location">Location Name:</label>
+                                        <input type="text" class="form-control" id="Location" name="SpotLocation" value="@item.SpotLocation">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Capacity">Capacity:</label>
+                                        <input type="text" class="form-control" id="Capacity" name="Capacity" value="@item.Capacity">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Capacity">Price:</label>
+                                        <input type="text" class="form-control" id="Price" name="PricePerHour" value="@item.PricePerHour">
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal -->
+        <div id="offerModel" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#offer">Offer</a></li>
+                            <li><a data-toggle="tab" href="#promo">Promo</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="offer" class="tab-pane fade in active">
+                                <form method="post" action="/Owner/CreateOffer">
+                                    <div class="form-grouper">
+                                        <label for="Offer">Discount Rate:</label>
+                                        <input type="text" class="form-control" id="Offer" name="ParkingRate" aria-describedby="Offer" placeholder="Enter your Discount Rate in %">
+                                    </div>
+                                    <input name="PlaceId" value="@item.ID" hidden />
+                                    <div class="form-grouper">
+                                        <label for="Offer">Fix Amoung:</label>
+                                        <input type="text" class="form-control" id="Offer" name="FixDiscount" aria-describedby="Offer" placeholder="Enter your Fix amount">
+                                    </div>
+
+                                    <div class="form-grouper">
+                                        <label for="Start">Start Date:</label>
+                                        <input type="date" class="form-control" id="Start" name="StartDate" placeholder="starting date">
+                                    </div>
+
+                                    <div class="form-grouper">
+                                        <label for="Start">Expiry Date:</label>
+                                        <input type="date" class="form-control" id="Start" name="ExpireDate" placeholder="Endig date">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </form>
+                            </div>
+
+                            <div id="promo" class="tab-pane fade">
+                                <form method="post" action="/Owner/CreatePromo">
+                                    <input name="PlaceId" value="@item.ID" hidden />
+                                    <div class="form-grouper" style="margin-top:-170px;">
+                                        <div>
+
+
+                                            <label for="Offer">Promo Code:</label>
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <input type="number" class="form-control" id="Offer" aria-describedby="Offer" placeholder=" Example: 65020" name="PromoCode">
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button class="btn btn-success">Generate</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label for="tk">Tk.</label>
+                                                <input type="text" class="form-control" id="tk" placeholder="Tk." name="DiscountRate">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-grouper">
+                                            <label for="Start">Start Date</label>
+                                            <input type="date" class="form-control" id="Start" placeholder="starting date" name="StartDate" value="12/2/2019">
+                                        </div>
+                                        <div class="form-grouper">
+                                            <label for="Start">Expiry Date</label>
+                                            <input type="date" class="form-control" id="Start" placeholder="Endig date" name="ExpireDate">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    }
+</section>
+

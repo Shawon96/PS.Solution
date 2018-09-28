@@ -1,0 +1,355 @@
+﻿@{Layout = "_Layout.cshtml";}
+@section home {
+    class="active"
+}
+<head>
+
+@section styles {
+    <link rel="stylesheet" href="~/Assets/dist/css/map_user_home.css">
+    <style>
+        .checked {
+            color: orange;
+        }
+    </style>
+}
+
+</head>
+
+<section class="content-header">
+    <h1>
+        User Panel Home<br>
+        <!-- <small>Optional description</small>  -->
+    </h1>
+
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+    <!-----------------------------------------------------------------------------------
+    |                               Your Page Content Here                              |
+    ------------------------------------------------------------------------------------>
+    <div class="row">
+        <div class="col-lg-3 col-xs-12 col-sm-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h2> Banani Parking</h2>
+
+                    <h4>SUNDAY [8.0am - 6.0pm]</h4>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-location"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-12 col-sm-6">
+            <!-- small box -->
+            <div class="small-box bg-orange">
+                <div class="inner">
+                    <h2>35<sup style="font-size: 20px">%</sup><sub style="font-size: 20px">Off Today!</sub></h2>
+                    <h4>Bashundhora, Block-C</h4>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-location"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-12 col-sm-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h2>Jamuna Parking</h2>
+
+                    <h4>FRIDAY [3.0pm - 8.0pm]</h4>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-location"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-12 col-sm-6">
+            <!-- small box -->
+            <div class="small-box bg-orange">
+                <div class="inner">
+                    <h2>85<sup style="font-size: 20px">%</sup><sub style="font-size: 20px">Off Friday!</sub></h2>
+                    <h4>Gulshan-1</h4>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-location"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-lg-12">
+            <div id="map" class="large-box bg-aqua"></div>
+        </div>
+    </div>
+    <style>
+        #map {
+            background: red;
+            height: 450px;
+        }
+    </style>
+    <!------ Include the above in your HEAD tag ---------->
+    <!-- <h2>Modal Example</h2> -->
+    <!-- Trigger the modal with a button -->
+    <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-login">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <a href="#" class="active" id="login-form-link">Park-now</a>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <a href="#" id="register-form-link">Subscribe</a>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <!-- FFFFFFFFFFOOOOOOOOOOOORRRRRRRRRRRRMMMMMMMMMMM 1111111111111111111 -->
+                                        <form id="login-form" action="" method="post" role="form" style="display: block;">
+                                            <div id="prof" style="display: block">
+                                                <div class="col-md-12">
+                                                    <!-- Widget: user widget style 1 -->
+                                                    <div class="box box-widget widget-user">
+                                                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                                                        <div class="widget-user-header bg-aqua-active">
+                                                            <h3 id="modalReqSpotName" class="widget-user-username">Alexander Parking</h3>
+                                                            <h5 id="modalReqSpotLocation" class="widget-user-desc">Kuril, Dhaka</h5>
+                                                        </div>
+                                                        <div class="widget-user-image">
+                                                            <img class="img-circle" src="~/Assets/dist/img/user1-128x128.jpg" alt="User Avatar">
+                                                        </div>
+                                                        <div class="box-footer" style="color:black">
+                                                            <div class="row">
+                                                                <div class="col-sm-4 border-right">
+                                                                    <div class="description-block">
+                                                                        <h5 id="modalReqPricePerHour" class="description-header">$1.3 /hr</h5>
+                                                                        <span class="description-text">RATE</span>
+                                                                    </div>
+                                                                    <!-- /.description-block -->
+                                                                </div>
+                                                                <!-- /.col -->
+                                                                <div class="col-sm-4 border-right">
+                                                                    <div class="description-block">
+                                                                        <!-- <h5 class="description-header">☆☆☆☆☆</h5> -->
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="description-text">RATINGS</span>
+                                                                    </div>
+                                                                    <!-- /.description-block -->
+                                                                </div>
+                                                                <!-- /.col -->
+                                                                <div class="col-sm-4">
+                                                                    <div class="description-block">
+                                                                        <h5 id="modalReqCapacity" class="description-header">3/5</h5>
+                                                                        <span class="description-text">CAPACITY</span>
+                                                                    </div>
+                                                                    <!-- /.description-block -->
+                                                                </div>
+                                                                <!-- /.col -->
+                                                            </div>
+                                                            <!-- /.row -->
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.widget-user -->
+                                                </div>
+                                            </div>
+                                            <!-- <div class="form-group">
+                                              <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Time" value="">
+                                            </div> -->
+                                            <div class="form-group">
+                                                <input type="text" name="PromoCode" tabindex="2" class="form-control" placeholder="Add a promo-code">
+                                                <input id="var1" class="store" type="hidden" name="PlaceId" value="Norway">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-3">
+                                                        <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Request">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                        <!-- FFFFFFFFFFOOOOOOOOOOOORRRRRRRRRRRRMMMMMMMMMMM 222222222222222222222222 -->
+                                        <form id="register-form" action="" method="post" role="form" style="display: none;">
+                                            <div id="prof" style="display: block">
+                                                <div class="col-md-12">
+                                                    <!-- Widget: user widget style 1 -->
+                                                    <div class="box box-widget widget-user">
+                                                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                                                        <div class="widget-user-header bg-aqua-active">
+                                                            <h3 id="modalSubSpotName" class="widget-user-username">Alexander Parking</h3>
+                                                            <h5 id="modalSubSpotLocation" class="widget-user-desc">Kuril, Dhaka</h5>
+                                                        </div>
+                                                        <div class="widget-user-image">
+                                                            <img class="img-circle" src="~/Assets/dist/img/user1-128x128.jpg" alt="User Avatar">
+                                                        </div>
+                                                        <div class="box-footer" style="color:black">
+                                                            <div class="row">
+                                                                <div class="col-sm-4 border-right">
+                                                                    <div class="description-block">
+                                                                        <h5 id="modalSubPricePerHour" class="description-header">$1.3 /hr</h5>
+                                                                        <span class="description-text">RATE</span>
+                                                                    </div>
+                                                                    <!-- /.description-block -->
+                                                                </div>
+                                                                <!-- /.col -->
+                                                                <div class="col-sm-4 border-right">
+                                                                    <div class="description-block">
+                                                                        <!-- <h5 class="description-header">☆☆☆☆☆</h5> -->
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star checked"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="fa fa-star"></span>
+                                                                        <span class="description-text">RATINGS</span>
+                                                                    </div>
+                                                                    <!-- /.description-block -->
+                                                                </div>
+                                                                <!-- /.col -->
+                                                                <div class="col-sm-4">
+                                                                    <div class="description-block">
+                                                                        <h5 id="modalSubCapacity" class="description-header">3/5</h5>
+                                                                        <span class="description-text">CAPACITY</span>
+                                                                    </div>
+                                                                    <!-- /.description-block -->
+                                                                </div>
+                                                                <!-- /.col -->
+                                                            </div>
+                                                            <!-- /.row -->
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.widget-user -->
+                                                </div>
+                                            </div>
+                                            <!-- <div class="form-group">
+                                              <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Field 1" value="">
+                                            </div> -->
+
+
+                                            <div class="bootstrap-timepicker">
+                                                <div class="bootstrap-timepicker-widget dropdown-menu"><table><tbody><tr><td><a href="#" data-action="incrementHour"><i class="glyphicon glyphicon-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="incrementMinute"><i class="glyphicon glyphicon-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td class="meridian-column"><a href="#" data-action="toggleMeridian"><i class="glyphicon glyphicon-chevron-up"></i></a></td></tr><tr><td><span class="bootstrap-timepicker-hour">03</span></td> <td class="separator">:</td><td><span class="bootstrap-timepicker-minute">15</span></td> <td class="separator">&nbsp;</td><td><span class="bootstrap-timepicker-meridian">PM</span></td></tr><tr><td><a href="#" data-action="decrementHour"><i class="glyphicon glyphicon-chevron-down"></i></a></td><td class="separator"></td><td><a href="#" data-action="decrementMinute"><i class="glyphicon glyphicon-chevron-down"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="toggleMeridian"><i class="glyphicon glyphicon-chevron-down"></i></a></td></tr></tbody></table></div>
+                                                <div class="form-group">
+                                                    <label>From:</label>
+                                                    <div class="input-group">
+                                                        <input name="Start" type="text" class="form-control timepicker">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-clock-o"></i>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+                                                <!-- /.form group -->
+                                            </div>
+
+                                            <div class="bootstrap-timepicker">
+                                                <div class="bootstrap-timepicker-widget dropdown-menu"><table><tbody><tr><td><a href="#" data-action="incrementHour"><i class="glyphicon glyphicon-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="incrementMinute"><i class="glyphicon glyphicon-chevron-up"></i></a></td><td class="separator">&nbsp;</td><td class="meridian-column"><a href="#" data-action="toggleMeridian"><i class="glyphicon glyphicon-chevron-up"></i></a></td></tr><tr><td><span class="bootstrap-timepicker-hour">03</span></td> <td class="separator">:</td><td><span class="bootstrap-timepicker-minute">15</span></td> <td class="separator">&nbsp;</td><td><span class="bootstrap-timepicker-meridian">PM</span></td></tr><tr><td><a href="#" data-action="decrementHour"><i class="glyphicon glyphicon-chevron-down"></i></a></td><td class="separator"></td><td><a href="#" data-action="decrementMinute"><i class="glyphicon glyphicon-chevron-down"></i></a></td><td class="separator">&nbsp;</td><td><a href="#" data-action="toggleMeridian"><i class="glyphicon glyphicon-chevron-down"></i></a></td></tr></tbody></table></div>
+                                                <div class="form-group">
+                                                    <label>To:</label>
+                                                    <div class="input-group">
+                                                        <input name="End" type="text" class="form-control timepicker">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-clock-o"></i>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.input group -->
+                                                </div>
+                                                <!-- /.form group -->
+                                            </div>
+
+
+                                            <div class="bootstrap-timepicker">
+                                                <div class="form-group">
+                                                    <!-- <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password"> -->
+                                                    <div class="form-group">
+                                                        <label>Date:</label>
+
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input name="Date" type="text" class="form-control pull-right" id="datepicker">
+                                                        </div>
+                                                        <!-- /.input group -->
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <input id="var2" class="store" type="hidden" name="PlaceId" value="Norway">
+
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-sm-6 col-sm-offset-3">
+                                                        <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="SUBSCRIBE">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- /.content -->
+<!-- ./wrapper -->
+@model List<PS.Core.Entities.Owner.ParkingPlace>
+@section scripts {
+<script type="text/javascript">
+    var places = [];
+    @foreach (var item in Model)
+    {
+        <text> 
+        places["@item.ID"] =
+        {
+            "ID": "@item.ID",
+            "OwnerId": "@item.OwnerId",
+            "SpotName": "@item.SpotName",
+            "SpotLocation": "@item.SpotLocation",
+            "PricePerHour": "@item.PricePerHour",
+            "Capacity": "@item.Capacity",
+            "Lat": "@item.Lat",
+            "Lon": "@item.Lon"
+        };
+        </text>
+    }
+</script>
+
+<script src="~/Assets/dist/js/starter.js"></script>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbdVBNVr39okNz2H1DLK0M-uA3oBAMhm0&callback=initMap">
+</script>
+}

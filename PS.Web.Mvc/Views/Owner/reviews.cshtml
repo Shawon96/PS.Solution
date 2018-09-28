@@ -1,0 +1,187 @@
+﻿@model IEnumerable<PS.Web.Mvc.Models.ReviewViewModel>
+@{
+    Layout = "_Layout.cshtml";
+}
+
+@section reviews {
+    class="active"
+}
+
+@section styles {
+    <style>
+        .previous {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .next {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+
+        .checked {
+            color: orange;
+        }
+
+        .img {
+            float: left;
+        }
+
+        .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+            color: white;
+            background-color: skyblue;
+        }
+
+        .my-review {
+            border-bottom: 2px solid skyblue;
+        }
+
+        .given-review {
+            border-bottom: 2px solid skyblue;
+        }
+
+        .checked {
+            color: orange;
+            font-size: 15px;
+        }
+    </style>
+}
+
+<section class="content-header">
+    <h1>
+        <b>Review </b><br>
+        <!-- <small>Optional description</small>  -->
+    </h1>
+
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+    <div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home"><b>Received</b></a></li>
+            <li><a data-toggle="tab" href="#menu1"><b>Given</b></a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active panel panel-default">
+                <div class="myreview">
+                    <p> <b>My Review </b></p>
+                </div>
+                <div class="my-review">
+
+                    @foreach (var item in Model)
+                    {
+
+                        if (@item.IsToMe == 0) { continue; }
+                        <div class="user-block panel-body">
+                            <img class="img-circle img-bordered-sm" src="~/Assets/dist/img/avatar.png" alt="User Image">
+                            <span class="username">
+                                <a href="#home">@item.Who</a><br>
+                                <span class=star>
+
+                                    @if (@item.Rating > 0)
+                                    {<span class="fa fa-star checked"></span>}
+                                    else
+                                    {<span class="fa fa-star"></span>}
+
+                                    @if (@item.Rating > 1)
+                                    {<span class="fa fa-star checked"></span>}
+                                    else
+                                    {<span class="fa fa-star"></span>}
+
+                                    @if (@item.Rating > 2)
+                                    {<span class="fa fa-star checked"></span>}
+                                    else
+                                    {<span class="fa fa-star"></span>}
+
+                                    @if (@item.Rating > 3)
+                                    {<span class="fa fa-star checked"></span>}
+                                    else
+                                    {<span class="fa fa-star"></span>}
+
+                                    @if (@item.Rating > 4)
+                                    {<span class="fa fa-star checked"></span>}
+                                    else
+                                    {<span class="fa fa-star"></span>}
+
+
+
+
+                                </span>
+                                <a href="#home" class="pull-right btn-box-tool"></a>
+                            </span>
+
+                            <span class="description">@item.Time</span>
+                            <p> @item.Comment </p>
+                        </div>
+                    }
+                </div>
+
+            </div>
+
+            <div id="menu1" class="tab-pane fade panel panel-default">
+                <div class="mysight-review">
+                    <p> Other Review</p>
+                </div>
+
+                @foreach (var item in Model)
+                {
+
+
+                    if (@item.IsToMe == 1) { continue; }
+                    <div class="given-review">
+                        <div class="user-block panel-body">
+                            <img class="img-circle img-bordered-sm" src="~/Assets/dist/img/avatar.png" alt="User Image">
+                            <span class="username">
+                                <a href="#home">@item.Who</a><br>
+                                <span class=star>
+
+
+
+                                    @if (@item.Rating > 0)
+                                    {<span class="fa fa-star checked"></span>}
+                                    else
+                                    {<span class="fa fa-star"></span>}
+
+                                    @if (@item.Rating > 1)
+                                    {<span class="fa fa-star checked"></span>}
+                                    else
+                                    {<span class="fa fa-star"></span>}
+
+                                    @if (@item.Rating > 2)
+                                    {<span class="fa fa-star checked"></span>}
+                                    else
+                                    {<span class="fa fa-star"></span>}
+
+                                    @if (@item.Rating > 3)
+                                    {<span class="fa fa-star checked"></span>}
+                                    else
+                                    {<span class="fa fa-star"></span>}
+
+                                    @if (@item.Rating > 4)
+                                    {<span class="fa fa-star checked"></span>}
+                                    else
+                                    {<span class="fa fa-star"></span>}
+
+                                </span>
+                                <a href="#home" class="pull-right btn-box-tool"></a>
+                            </span>
+
+                            <span class="description">@item.Time</span>
+                            <p> @item.Comment </p>
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+        </div>
+    </div>
+    <div>
+    </div>
+
+</section>
+<!-- /.content -->
+<!-- ./wrapper -->

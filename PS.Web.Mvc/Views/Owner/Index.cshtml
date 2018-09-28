@@ -1,0 +1,75 @@
+﻿@model IEnumerable<PS.Core.Entities.Owner.ParkingPlace>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpotName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SpotLocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PricePerHour)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Capacity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsBlocked)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpotName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpotLocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PricePerHour)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Capacity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsBlocked)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

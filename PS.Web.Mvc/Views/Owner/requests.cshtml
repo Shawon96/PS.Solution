@@ -1,0 +1,209 @@
+﻿@model IEnumerable<PS.Web.Mvc.Models.OwnerBookingModel> 
+@{
+    Layout = "_Layout.cshtml";
+}
+
+
+
+@section requests {
+    class="active"
+}
+
+
+@section styles {
+
+    <style type="text/css">
+        .rating > span:hover:before {
+            content: "\2605";
+            position: absolute;
+        }
+
+        .rating {
+            unicode-bidi: bidi-override;
+            direction: rtl;
+        }
+
+            .rating span {
+                width: 2.1em;
+            }
+
+            .rating > span:hover:before,
+            .rating > span:hover ~ span:before {
+                content: "\2605";
+                position: absolute;
+                color: gold;
+            }
+    </style>
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Owner Panel Requests<br>
+        <small>Optional description</small>
+    </h1>
+
+</section>
+<section class="content container-fluid">
+    <div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#requests">Requests</a></li>
+            <li><a data-toggle="tab" href="#accepted">Accepted</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="requests" class="tab-pane fade in active">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <i class="fa fa-bullhorn"></i>
+
+                        <h3 class="box-title">Book Requests</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    @foreach (var item in Model)
+                    {
+                        if (@item.isBook == 0) { continue; }
+                        if (@item.IsPending == 0) { continue; }
+                        <div class="box-body">
+                            <div class="callout callout-default">
+                                <a href="#" style="color:black; text-decoration:none;"><h4>@item.ParkerName</h4></a>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                @*<h5>14 minutes ago</h5>*@
+                                <h5>Place: <span class="text-green">@item.PlaceName</span></h5>
+                                <h5>Status: <span class="text-yellow">Pending</span></h5>
+                                <a href="/owner/acceptRequest/@item.BookId" class="btn btn-primary">Accept</a>
+                                <a href="/owner/cancelRequest/@item.BookId" class="btn btn-danger">Cancel</a>
+                                
+                            </div>
+                        </div>
+                    }
+
+                    <div class="box-header with-border">
+                        <i class="fa fa-bullhorn"></i>
+
+                        <h3 class="box-title">Subscriptions Requests</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    @foreach (var item in Model)
+                    {
+                        if (@item.isBook == 1) { continue; }
+                        if (@item.IsPending == 0) { continue; }
+                        <div class="box-body">
+                            <div class="callout callout-default">
+                                <a href="#" style="color:black; text-decoration:none;"><h4>@item.ParkerName</h4></a>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                @*<h5>14 minutes ago</h5>*@
+                                <h5>Place: <span class="text-green">@item.PlaceName</span></h5>
+                                <h5>Status: <span class="text-yellow">Pending</span></h5>
+                                <a href="/owner/acceptRequest/@item.BookId" class="btn btn-primary">Accept</a>
+                                <a href="/owner/cancelRequest/@item.BookId" onclick="confirm('are you sure you want to cancel the request?')"class="btn btn-danger">Cancel</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+            <div id="accepted" class="tab-pane fade">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <i class="fa fa-bullhorn"></i>
+
+                        <h3 class="box-title">Accepted Bookings</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    @foreach (var item in Model)
+                    {
+                        if (@item.isBook == 0) { continue; }
+                        if (@item.IsPending == 1) { continue; }
+                        <div class="box-body">
+                            <div class="callout callout-default">
+                                <a href="#" style="color:black; text-decoration:none;"><h4>@item.ParkerName</h4></a>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                @*<h5>Requested: 30 minutes ago</h5>
+                    <h5>Accepted: 10 minutes ago</h5>*@
+                                <h5>Place: <span class="text-green">@item.PlaceName</span></h5>
+                                <h5>Status: <span class="text-green">Accepted</span></h5>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#giveReviewModal">Done</button>
+                                @*<button class="btn btn-danger">Cancel</button>*@
+                            </div>
+                        </div>
+                    }
+                    <div class="box-header with-border">
+                        <i class="fa fa-bullhorn"></i>
+
+                        <h3 class="box-title">Accepted Subscriptions</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    @foreach (var item in Model)
+                    {
+                        if (@item.isBook == 1) { continue; }
+                        if (@item.IsPending == 1) { continue; }
+                        <div class="box-body">
+                            <div class="callout callout-default">
+                                <a href="#" style="color:black; text-decoration:none;"><h4>@item.ParkerName</h4></a>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                @*<h5>Requested: 30 minutes ago</h5>
+        <h5>Accepted: 10 minutes ago</h5>*@
+                                <h5>Date: <span class="text-green">@item.Date</span></h5>
+                                <h5>From: <span class="text-green">@item.From</span></h5>
+                                <h5>To: <span class="text-green">@item.To</span></h5>
+                                <h5>Place: <span class="text-green">@item.PlaceName</span></h5>
+                                <h5>Status: <span class="text-green">Accepted</span></h5>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#giveReviewModal">Done</button>
+                                @*<button class="btn btn-danger">Cancel</button>*@
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <!---------------------- -->
+        <!-- Modal -->
+        <div class="modal fade" id="giveReviewModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Share Your Experience</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <form method="post" action="/Users/MakeReview">
+                            <label>Rating: </label>
+                            <input type="text" name="ToUserId" value="2" hidden />
+                            <input type="text" name="Rating" />
+                            <div class="rating" style="text-align:left;">
+                                <span style="width:50px">☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                            </div>
+                            <label>Comment: </label>
+                            <textarea type="text" rows="7" cols="75" name="comment" placeholder="Comment"> </textarea>
+                            <input type="submit" class="btn btn-primary" value="Share">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-------------modal finish------------>
+</section>
